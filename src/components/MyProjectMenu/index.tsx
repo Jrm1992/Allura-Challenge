@@ -5,11 +5,6 @@ import Menu from '../Menu'
 
 export default function MyProjectMenu({setColor, setLang}: any) {
   
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    console.log(event.target.value);
-    setLang(event.target.value);
-  };
-  
   return (
     <form className='flex flex-col gap-4 mx-8'>
       <Menu Title='SEU PROJETO'>
@@ -20,8 +15,8 @@ export default function MyProjectMenu({setColor, setLang}: any) {
       </Menu>
       <Menu Title='PERSONALIZACAO'>
         <div className='flex flex-col gap-4'>
-          <select className='bg-white/[0.16] hover:bg-white/[0.24] h-14 gap-2 p-4 rounded-lg outline-none' onChange={(e) => handleChange(e)}>
-            <option className='bg-[#051d3b]' value="javascript">Javascript</option>
+          <select className='bg-white/[0.16] hover:bg-white/[0.24] h-14 gap-2 p-4 rounded-lg outline-none' onChange={(e) => setLang(e.target.value)}>
+            <option className='bg-[#051d3b]' value="typescript">Javascript</option>
             <option className='bg-[#051d3b]' value="xml">HTML</option>
             <option className='bg-[#051d3b]' value="css">CSS</option>
           </select>

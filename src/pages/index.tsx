@@ -30,7 +30,7 @@ const Home: NextPage = () => {
             </div>
           </>
         </Menu>
-        <CodeEditor color={color} lag={lang}/>
+        <CodeEditor color={color} lang={lang}/>
         <MyProjectMenu setColor={setColor} setLang={setLang}/>
       </div>
     </div>
