@@ -1,40 +1,57 @@
-import type { NextPage } from 'next'
-import { Code, UsersThree } from 'phosphor-react'
-import { useState } from 'react'
-import CodeEditor from '../components/CodeEditor'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import MyProjectMenu from '../components/MyProjectMenu'
+import type { NextPage } from "next";
+import { useState } from "react";
+
+import CodeEditor from "../components/CodeEditor";
+import Community from "../components/Community";
+import Header from "../components/Header";
+import Menu from "../components/Menu";
+
+import clsx from "clsx";
+import { Code, UsersThree } from "phosphor-react";
 
 const Home: NextPage = () => {
-  const [color, setColor] = useState('#0058ff')
-  const [lang, setLang] = useState('javascript')
-  
+  const [tabSelected, setTabSelected] = useState("Community");
+
   return (
-    <div className='bg-[#051D3B] max-w-[1440px] m-auto'>
+    <div className="bg-[#051D3B] lg:max-w-[1440px] min-h-[100vh] m-auto">
       <Header />
-      <div className='flex flex-col lg:flex-row '>
-        <Menu Title='MENU' className='mx-8'>
+      <div className="flex flex-col lg:flex-row ">
+        <Menu Title="MENU" className="mx-8 lg:flex hidden">
           <>
-            <div className='flex items-center gap-4'>
-              <div className='w-12 h-12 rounded-2xl bg-[#5081FB] text-sm font-extrabold justify-center items-center flex'>
-              <Code size={24} color="#fafafa" weight="bold" />
+            <button
+              className="flex items-center gap-4"
+              onClick={() => setTabSelected("CodeEditor")}
+            >
+              <div
+                className={clsx(
+                  "w-12 h-12 rounded-2xl bg-[#5081FB16] disabled:bg-white text-sm font-extrabold justify-center items-center flex",
+                  { ["bg-blue-500"]: tabSelected === "CodeEditor" }
+                )}
+              >
+                <Code size={24} color="#fafafa" weight="bold" />
               </div>
               Editor de codigo
-            </div>
-            <div className='flex items-center gap-4'>
-              <div className='w-12 h-12 rounded-2xl bg-[#5081FB16] text-sm font-extrabold justify-center items-center flex'>
-              <UsersThree size={24} color="#fafafa" weight="bold" />
+            </button>
+            <button
+              className="flex items-center gap-4"
+              onClick={() => setTabSelected("Community")}
+            >
+              <div
+                className={clsx(
+                  "w-12 h-12 rounded-2xl bg-[#5081FB16] disabled:bg-white text-sm font-extrabold justify-center items-center flex",
+                  { ["bg-blue-500"]: tabSelected === "Community" }
+                )}
+              >
+                <UsersThree size={24} color="#fafafa" weight="bold" />
               </div>
               Comunidade
-            </div>
+            </button>
           </>
         </Menu>
-        <CodeEditor color={color} lang={lang}/>
-        <MyProjectMenu setColor={setColor} setLang={setLang}/>
+        {tabSelected == "Community" ? <Community /> : <CodeEditor />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
