@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 
 import Logo from "../../../public/Logo.svg";
 import { auth } from "../../config/firebase";
@@ -12,18 +12,9 @@ import { List, MagnifyingGlass, SignOut } from "phosphor-react";
 export default function Header() {
   const { user, setUser } = useGlobalContext();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((response) => setUser(response));
-  }, []);
-
   function handleSignOut() {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signOut(auth);
+    setUser(null);
   }
 
   return (
@@ -70,7 +61,7 @@ export default function Header() {
         </div>
       ) : (
         <div className="hidden lg:flex">
-          <SignIn setUser={setUser} user={user} />
+          <SignIn />
         </div>
       )}
     </div>

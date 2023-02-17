@@ -48,7 +48,7 @@ export default function CodeEditor() {
             ) : (
               <textarea
                 onChange={(e) =>
-                  setPostCode((prevState: any) => {
+                  setPostCode((prevState) => {
                     return {
                       ...prevState,
                       Code: e.target.value,

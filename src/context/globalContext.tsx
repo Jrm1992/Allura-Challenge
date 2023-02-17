@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { User } from "@firebase/auth-types";
 
-export interface IGlobalContextProps {
+export type IGlobalContextProps = {
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<boolean>;
   user: User | undefined | null;
-  setUser: React.Dispatch<IGlobalContextProps["user"]>;
+  setUser: React.Dispatch<React.SetStateAction<IGlobalContextProps["user"]>>;
   postCode: {
     Code: string;
     Language: string;
@@ -18,13 +18,16 @@ export interface IGlobalContextProps {
       Name: string | null | undefined;
       avatarURL: string | null | undefined;
     };
+    id?: string;
   };
-  setPostCode: React.Dispatch<IGlobalContextProps["postCode"]>;
-}
+  setPostCode: React.Dispatch<
+    React.SetStateAction<IGlobalContextProps["postCode"]>
+  >;
+};
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
   menuOpen: false,
-  user: {},
+  user: "",
   postCode: {
     Code: "",
     Language: "javascript",
@@ -39,7 +42,7 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   },
 });
 
-export const GlobalContextProvider = ({ children }) => {
+export const GlobalContextProvider = ({ children }: any) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<User>();
   const [postCode, setPostCode] = useState({

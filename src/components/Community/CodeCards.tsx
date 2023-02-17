@@ -8,7 +8,7 @@ import { db } from "../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { Heart } from "phosphor-react";
 
-export interface ICodeCards {
+export type ICodeCards = {
   children: string;
   Language: string;
   Title: string;
@@ -20,7 +20,7 @@ export interface ICodeCards {
     avatarURL: string;
   };
   id: string;
-}
+};
 
 export default function CodeCards({
   children,

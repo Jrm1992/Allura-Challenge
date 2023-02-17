@@ -4,15 +4,15 @@ import { useGlobalContext } from "../../context";
 
 import { signInWithPopup } from "firebase/auth";
 
-export default function SignIn({ setUser }: any) {
-  const { setPostCode } = useGlobalContext();
+export default function SignIn() {
+  const { setPostCode, setUser } = useGlobalContext();
 
   function handleLogin() {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
+        const user: any = result.user;
         setUser(user);
-        setPostCode((prevState: any) => {
+        setPostCode((prevState) => {
           return {
             ...prevState,
             Author: {

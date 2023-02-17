@@ -16,7 +16,7 @@ export default function MyProjectMenu() {
   ) {
     e.preventDefault();
     await addDoc(collection(db, "Codes"), postCode);
-    setPostCode((prevState: any) => {
+    setPostCode((prevState) => {
       return {
         ...prevState,
         Code: "",
@@ -36,7 +36,7 @@ export default function MyProjectMenu() {
             placeholder="Nome do seu projeto"
             value={postCode.Title}
             onChange={(e) =>
-              setPostCode((prevState: any) => {
+              setPostCode((prevState) => {
                 return {
                   ...prevState,
                   Title: e.target.value,
@@ -49,7 +49,7 @@ export default function MyProjectMenu() {
             value={postCode.Description}
             className="h-20"
             onChange={(e) =>
-              setPostCode((prevState: any) => {
+              setPostCode((prevState) => {
                 return {
                   ...prevState,
                   Description: e.target.value,
@@ -64,7 +64,7 @@ export default function MyProjectMenu() {
           <select
             className="bg-white/[0.16] hover:bg-white/[0.24] h-14 gap-2 p-4 rounded-lg outline-none"
             onChange={(e) =>
-              setPostCode((prevState: any) => {
+              setPostCode((prevState) => {
                 return {
                   ...prevState,
                   Language: e.target.value,
@@ -87,7 +87,7 @@ export default function MyProjectMenu() {
             defaultValue="#0058ff"
             className="py-1 px-2 outline-none"
             onChange={(e) =>
-              setPostCode((prevState: any) => {
+              setPostCode((prevState) => {
                 return {
                   ...prevState,
                   BgColor: e.target.value,

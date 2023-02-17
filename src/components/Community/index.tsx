@@ -1,27 +1,14 @@
-import { useEffect, useState } from "react";
-
-import { db } from "../../config/firebase";
 import CodeCards from "./CodeCards";
-
-import { collection, getDocs } from "firebase/firestore";
+import { useGetData } from "./useGetData";
 
 export default function Community() {
-  const [data, setData] = useState<any>([]);
-
-  async function getData() {
-    const querySnapshot = await getDocs(collection(db, "Codes"));
-    setData(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }
-  useEffect(() => {
-    getData();
-  }, []);
-
+  const { data } = useGetData();
   return (
     <div className="grid lg:grid-cols-2 gap-6 m-auto">
-      {data.map((data, i) => {
+      {data?.map((data) => {
         return (
           <CodeCards
-            key={i}
+            key={data.id}
             Author={data.Author}
             BgColor={data.BgColor}
             Description={data.Description}
